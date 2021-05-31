@@ -1,13 +1,16 @@
 # The Use of Domain-Specific Sentiment Analysis on Predicting Information Diffusion in Online Social Networks
 #### *This work was submitted in partial fulfillment of Columbia University Master's Program*
 
-#### Relevant Previous Work
+#### Short Summary
+In this project, I built machine learning models (*logistic regression, k nearest neighbor, random forests, and XGBoost*) using domain-specific *sentiment analysis* that predict whether a tweet will be retweeted or not, with the highest AUC score of 84%.
+
+#### Previous Work
 This project was inspired by previous research projects I was involved in.
 If interested, here are some research findings that I presented at national social science conferences:
 1. March 2018, [the Society for Personality and Social Psychology Annual Meeting](https://github.com/jino-kwon/Sentiment_Analysis_For_Predicting_Info_Diffusion/blob/master/Jino%202018%20SPSP%20poster.pdf)
 2. May 2019, [the Association for Psychological Science Annual Convention](https://github.com/jino-kwon/Sentiment_Analysis_For_Predicting_Info_Diffusion/blob/master/Jino%202019%20APS%20poster.pdf)
 
-#### The Motivation
+#### Motivation
 As online social media networks have become a major platform for sharing one’s opinions, there is a growing need for building an accurate predictive model for information diffusion. For instance, companies/influencers/politicians hope to 
 know how viral their new message will be.
 However, partly due to 
