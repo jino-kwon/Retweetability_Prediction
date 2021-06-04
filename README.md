@@ -1,4 +1,4 @@
-# Retweet Predictor
+# Retweetability Predictor
 #### *This work was submitted in partial fulfillment of Columbia University Master's Program*
 Original Thesis Title : The Use of Domain-Specific Sentiment Analysis on Predicting Information Diffusion in Online Social Networks
 
@@ -12,7 +12,36 @@ If interested, here are some research findings that I presented at national soci
 2. May 2019, [the Association for Psychological Science Annual Convention](https://github.com/jino-kwon/Sentiment_Analysis_For_Predicting_Info_Diffusion/blob/master/Jino%202019%20APS%20poster.pdf)
 
 #### Motivation
-As online social media networks have become a major platform for sharing one’s opinions, there is a growing need for building an accurate predictive model for information diffusion. For instance, companies/influencers/politicians hope to know how viral their new message will be.
+As online social media networks have become a major platform for sharing one’s opinions, there is a growing need for building an accurate predictive model for information diffusion. Taking insights from social science research (See the *previous work* for more details), I hoped to build a prediction model that incorporates a number of social factors associated with sharing *political content* in online social networks.
 
-#### Summary of this project
-Previous models have included sentiment analysis as a part of features, yet most of them relied on general-purpose dictionaries that classify sentiment simply as positive or negative. The idea of utilizing a domain-specific dictionary for sentiment analysis has been accepted and widely used in other domains such as financial prediction. Empirical evidence helps specify a few candidates for domain-specific dictionaries. Firstly, moral-emotional expression is reported to be highly correlated with information dissemination of moralized content (moral contagion). Further studies identified specific types of moral-emotions relevant to the moral contagion effect: outrage and fear. 12 prediction models were created for performance comparison: models based on 4 machine learning algorithms (logistic regression, k nearest neighbor, random forests, and XGBoost) for each type of 3 sentiment scores (the positive-negative score, the moral-emotional score, and the outrage-fear score). The results showed that models with domain-specific emotion scores, moral-emotional or outrage-fear, showed stronger performance than a model with a positive-negative sentiment score. However, the difference was too small to make a definitive claim about the importance of domain-specific emotions. Feature importances highlight the significance of sentiment scores in each prediction model. Therefore, future work on this topic would be helpful in terms of advancing our knowledge on predicting virality of moralized content in online social contexts.
+In addition, in continuation of my previous work regarding domain-specific sentiment analysis, I compared the performances between models employing different dictionaries:
+
+1. General, binary sentiment-based model ( positive or negative words )
+2. Moral-emotional sentiment-based model ( moral-emotional words such as *peace* and *punish* )
+3. Outrage-fear sentiment-based model
+
+#### Data
+The scraped tweets were posted by all 100 U.S. Senators during the year leading up to the 2016 U.S. election: from November 2015 to October 2016. (n = 99,750)
+
+#### Features
+- The number of followers
+- URL and Media Attachment
+- Political ideology scores
+- Sentiment Analysis
+- Gender
+- Social support
+
+#### Target
+The main task was to classify whether a tweet is retweetable or not.
+In defining what a retweetable message is, I referred to the median retweet counts in the dataset, which was 6.
+Thus, Twitter messages retweeted 6 times or more were classified as 'retweetable', and the other were categorized as 'not retweetable'.
+
+#### Heatmap for the Correlation Matrix for All Features
+![alt text](https://github.com/jino-kwon/Retweet_Prediction_Models/blob/master/images/heatmap.jpg)
+
+#### Feature Importance Plot for the Best Model
+*importance type='weight'*
+![alt text](https://github.com/jino-kwon/Retweet_Prediction_Models/blob/master/images/feature_importance.jpg)
+
+#### Performance
+![alt text](https://github.com/jino-kwon/Retweet_Prediction_Models/blob/master/images/performance.jpg)
