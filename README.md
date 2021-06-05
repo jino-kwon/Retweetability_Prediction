@@ -3,7 +3,7 @@
 Original Thesis Title : The Use of Domain-Specific Sentiment Analysis on Predicting Information Diffusion in Online Social Networks
 
 #### Short Summary
-In this project, I built machine learning models (*logistic regression, k nearest neighbor, random forests, and XGBoost*) including domain-specific *sentiment analysis* that predict whether a tweet will be retweeted or not, with the highest AUC score of *84%*.
+In this project, I built machine learning models (*logistic regression, k nearest neighbor, random forests, and XGBoost*) including domain-specific *sentiment analysis* that predict whether a tweet will be retweeted or not, with the highest AUC of *0.84*.
 
 #### Previous Work
 This project was inspired by previous research projects I was involved in.
@@ -46,4 +46,4 @@ Thus, Twitter messages retweeted 6 times or more were classified as 'retweetable
 #### Performance
 ![alt text](https://github.com/jino-kwon/Retweet_Prediction_Models/blob/master/images/performance.jpg)
 
-**The XGBoost models rendered the highest AUC of *84%*.**
+**The XGBoost models rendered the highest AUC of *0.84*.**
