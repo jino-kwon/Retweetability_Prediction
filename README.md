@@ -1,4 +1,4 @@
-# Retweetability Predictor
+# Retweetability Prediction
 #### *This work was submitted in partial fulfillment of Columbia University Master's Program*
 Original Thesis Title : The Use of Domain-Specific Sentiment Analysis on Predicting Information Diffusion in Online Social Networks
 
