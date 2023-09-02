@@ -103,18 +103,17 @@ df1.head()
 # Prepping the NRC dictionary for sentiment analysis
 filepath = "/content/drive/My Drive/Colab Notebooks/thesis/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt"
 nrc_df = pd.read_csv(filepath,  names=["word", "emotion", "association"], sep='\t')
-# I'm deleting a list of entries that are not associated with any emotion
-nrc_df = nrc_df[nrc_df.association != 0]
-nrc_df.head()
 
-# Create a 'outrage' dictionary
-nrc_outrage = nrc_df[(nrc_df.emotion == 'anger') | (nrc_df.emotion == 'disgust')]
-# Create a 'fear' dictionary
-nrc_fear = nrc_df[nrc_df.emotion == 'fear']
-# Create a 'positive' dictionary
-nrc_pos = nrc_df[nrc_df.emotion == 'positive']
-# Create a 'negative' dictionary
-nrc_neg = nrc_df[nrc_df.emotion == 'negative']
+# Filter out entries not associated with any emotion
+nrc_df = nrc_df[nrc_df.association != 0]
+
+# Create dictionaries for specific emotions
+emotions = {
+    'outrage': ['anger', 'disgust'],
+    'fear': ['fear'],
+    'positive': ['positive'],
+    'negative': ['negative']
+}
 
 # Word counts for each dictionary
 print(nrc_outrage.count)
@@ -122,46 +121,17 @@ print(nrc_fear.count)
 print(nrc_pos.count)
 print(nrc_neg.count)
 
-# Create a function for 'outrage' sentiment score
-def outrage_senti(txt):
+# Create functions for sentiment scoring
+def sentiment_score(txt, emotion):
     token = nltk.word_tokenize(txt)
-    outrage_count = 0
-    for word in token:
-        for o in nrc_outrage['word']:
-            if word == o:
-                outrage_count += 1
-    return outrage_count / len(token)
+    word_set = set(token)
+    emotion_words = set(nrc_df[nrc_df.emotion.isin(emotions[emotion])]['word'])
+    emotion_count = len(word_set.intersection(emotion_words))
+    return emotion_count / len(token)
 
-# Create a function for 'fear' score
-def fear_senti(txt):
-    token = nltk.word_tokenize(txt)
-    fear_count = 0
-    for word in token:
-        for o in nrc_fear['word']:
-            if word == o:
-                fear_count += 1
-    return fear_count / len(token)
-
-# Create a fuction for 'posneg' score
-def posneg(txt):
-    token = nltk.word_tokenize(txt)
-    pos_count = 0
-    neg_count = 0
-    for word in token:
-        for p in nrc_pos['word']:
-            if word == p:
-                pos_count += 1
-        for n in nrc_neg['word']:
-            if word == n:
-                neg_count += 1
-    return (pos_count - neg_count) / len(token)
-
-# Create a new column for 'outrage score'
-df1['outrage'] = df1.clean_text.apply(outrage_senti)
-# Create a new column for 'fear score'
-df1['fear'] = df1.clean_text.apply(fear_senti)
-# Create a new column for 'pos/neg' score
-df1['posneg'] = df1.clean_text.apply(posneg)
+# Create a new column for each sentiment score
+for emotion in emotions:
+    df1[emotion] = df1.clean_text.apply(lambda x: sentiment_score(x, emotion))
 
 # The number of moral-emotional words needs to be divided by the length of tokens for normalization
 df1 = df.copy() 
