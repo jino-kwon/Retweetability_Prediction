@@ -46,4 +46,4 @@ Thus, Twitter messages retweeted 6 times or more were classified as 'retweetable
 #### Performance
 ![alt text](https://github.com/jino-kwon/Retweet_Prediction_Models/blob/master/images/performance.jpg)
 
-**The XGBoost models using the outrage-fear dictionary rendered the highest AUC of *0.8393*.**
+**: The XGBoost models using the outrage-fear dictionary rendered the highest AUC of *0.8393*.**
